@@ -47,7 +47,7 @@ class InvoiceUpdater(authDataStorage: AuthDataStorage,
 
         } //invoiceService.loadInvoice()
       } yield loaded
-
     } //Do something
+    case _ => logger.debug("MM")
   }
 }

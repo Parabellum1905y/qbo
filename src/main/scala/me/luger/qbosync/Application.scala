@@ -37,7 +37,7 @@ object Application extends App {
 
     val tickActor = actorSystem.actorOf(Props(new InvoiceUpdater(authDataStorage, qboDataStorage, qboInvoiceService)))
 
-    actorSystem.scheduler.scheduleWithFixedDelay(1.minutes, 4.minutes, tickActor, Run)
+    actorSystem.scheduler.scheduleWithFixedDelay(1.minutes, 4.minutes)(() => { tickActor ! Run() })
 
     Http().newServerAt(config.http.host, config.http.port).bind(httpRoute.route)
   }
